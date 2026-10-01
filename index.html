@@ -59,13 +59,11 @@ h2{font-size:1.2rem;margin:0 0 18px;font-weight:600}
 .role-card h3{margin:0 0 8px;font-size:1.1rem;font-weight:600}
 .role-card p{margin:0;color:var(--muted);font-size:.94rem}
 
-.stream-note{
-  background:var(--panel);border:1px solid var(--line);border-radius:8px;
-  padding:18px 20px;display:flex;gap:14px;align-items:flex-start;
+.stream-tag{
+  margin:22px 0 0;padding-top:16px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:.88rem;
 }
-.stream-note .icon{color:var(--phosphor);font-size:1.4rem;line-height:1;flex:none;padding-top:2px}
-.stream-note h3{margin:0 0 4px;font-size:1rem;font-weight:600}
-.stream-note p{margin:0;color:var(--muted);font-size:.93rem}
+.stream-tag .mono{color:var(--phosphor);margin-right:8px}
 
 /* The terminal signup: one image, its own aspect ratio locked so the
    percentage-positioned overlay always lands on the same part of the
@@ -166,18 +164,7 @@ footer p{margin:0 0 6px}
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="stream-note">
-      <span class="icon">&#9679;</span>
-      <div>
-        <h3>Built-in Twitch integration</h3>
-        <p>Viewers can trigger chaos events that disrupt the investigation in real time.</p>
-      </div>
-    </div>
+    <p class="stream-tag term-font"><span class="mono">[LIVE]</span>Twitch integration built in. Viewers vote to trigger chaos events that disrupt the investigation in real time.</p>
   </div>
 </section>
 
