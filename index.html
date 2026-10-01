@@ -225,35 +225,37 @@ footer p{margin:0 0 6px}
   });
 
   var flashTimer = null;
-  var flashIndex = 0;
+  var lastShown = null;
+
+  function pickAlt(){
+    if(alts.length === 1) return alts[0];
+    var choice;
+    do {
+      choice = alts[Math.floor(Math.random() * alts.length)];
+    } while (choice === lastShown);
+    lastShown = choice;
+    return choice;
+  }
 
   function startFlash(){
-    if(flashTimer) return;
-    flashIndex = 0;
+    if(flashTimer) clearInterval(flashTimer);
     flashTimer = setInterval(function(){
-      heroImg.src = alts[flashIndex % alts.length];
-      flashIndex++;
-    }, 110);
+      heroImg.src = pickAlt();
+    }, 70 + Math.random() * 60);
   }
   function stopFlash(){
     if(flashTimer){ clearInterval(flashTimer); flashTimer = null; }
+    lastShown = null;
     heroImg.src = defaultSrc;
   }
 
-  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  var hero = heroImg.closest('.hero');
-
-  if(canHover){
-    hero.addEventListener('mouseenter', startFlash);
-    hero.addEventListener('mouseleave', stopFlash);
-  } else {
-    function autoCycle(){
-      startFlash();
-      setTimeout(stopFlash, 650);
-    }
-    setTimeout(autoCycle, 1800);
-    setInterval(autoCycle, 5000);
+  function runCycle(){
+    startFlash();
+    setTimeout(stopFlash, 500 + Math.random() * 500);
+    setTimeout(runCycle, 1500 + Math.random() * 2000);
   }
+
+  setTimeout(runCycle, 1200);
 })();
 </script>
 </body>
