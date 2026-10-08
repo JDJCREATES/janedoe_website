@@ -247,6 +247,8 @@ html{scroll-behavior:smooth}
   var altsAttr = heroImg.getAttribute('data-alts') || '';
   var alts = altsAttr.split(',').filter(Boolean);
   if(!alts.length) return;
+  // photosensitivity: nothing flickers for visitors who ask for reduced motion
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   [defaultSrc].concat(alts).forEach(function(src){
     var pre = new Image();
@@ -270,7 +272,7 @@ html{scroll-behavior:smooth}
     if(flashTimer) clearInterval(flashTimer);
     flashTimer = setInterval(function(){
       heroImg.src = pickAlt();
-    }, 70 + Math.random() * 60);
+    }, 350 + Math.random() * 100);
   }
   function stopFlash(){
     if(flashTimer){ clearInterval(flashTimer); flashTimer = null; }
